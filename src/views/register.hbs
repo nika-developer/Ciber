@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta - Ciber Gamer</title>
+
+    <!--CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Formulario de Registro -->
+    <div class="container mt-5">
+        <h2 class="text-center">Crear Cuenta</h2>
+        <form action="/api/users" method="POST">
+            <!-- Usuario -->
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input type="text" class="form-control" name="username" placeholder="Ingrese su nombre de usuario" required />
+            </div>
+
+            <!-- Correo -->
+            <div class="form-group">
+                <label for="email">Correo</label>
+                <input type="email" class="form-control" name="email" placeholder="ejemplo@gmail.com" required />
+            </div>
+            
+            <!-- Contraseña -->
+            <div class="form-group">
+                <label for="password1">Contraseña</label>
+                <input type="password" class="form-control" name="password" placeholder="*******" required />
+            </div>
+
+            <!-- Botón de envío -->
+            <button type="submit" class="btn btn-success btn-block">Registrar</button>
+        </form>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

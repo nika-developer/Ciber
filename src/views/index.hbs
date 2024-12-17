@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* CSS */
+        body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 400px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm" action="/login" method="POST" onsubmit="procesarLogin(event)">
+            <div class="form-group">
+                <label for="email">Correo</label>
+                <input type="email" id="email" name="email" placeholder="ejemplo@gmail.com" required />
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="*******" required />
+            </div>
+
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+
+    <script src="/auth.js"></script>
+
+</body>
+</html>
