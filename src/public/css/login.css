@@ -1,0 +1,56 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Estilos generales */
+body {
+    background-color: #0d0d0d;
+    font-family: 'Orbitron', sans-serif;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #0ff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar (fuera del formulario) */
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #00f;
+    border-radius: 10px;
+    width: 100%;
+    position: relative; /* Evita que se sobreponga al contenido */
+    margin-bottom: 50px; /* Separación con el formulario */
+}
+.navbar .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #f0f;
+}
+.navbar .nav-link {
+    text-decoration: none;
+    color: #0ff;
+    font-size: 18px;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #00f;
+    transition: all 0.3s ease-in-out;
+}
+.navbar .nav-link:hover {
+    background: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #f0f;
+    transform: scale(1.1);
+    border-radius: 10px;
+}
+
+/* Contenedor del formulario */
+.container {
+    margin: 50px auto; /* Centrado vertical y horizontal */
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #00f;
+    text-align: center;
+}

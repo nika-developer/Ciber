@@ -1,0 +1,99 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Estilos generales */
+body {
+    background-color: #0d0d0d;
+    font-family: 'Orbitron', sans-serif;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #00f, 0 0 15px #0ff;
+}
+
+/* Navbar (fuera del formulario) */
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #00f;
+    border-radius: 10px;
+    width: 100%;
+    position: relative; /* Evita que se sobreponga al contenido */
+    margin-bottom: 50px; /* Separación con el formulario */
+}
+.navbar .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #f0f;
+}
+.navbar .nav-link {
+    text-decoration: none;
+    color: #0ff;
+    font-size: 18px;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #00f;
+    transition: all 0.3s ease-in-out;
+}
+.navbar .nav-link:hover {
+    background: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #f0f;
+    transform: scale(1.1);
+    border-radius: 10px;
+}
+
+/* Contenedor con efecto neón */
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00ffcc;
+    border: 2px solid #00ffcc;
+    width: 40%;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+}
+
+/* Estilo de los inputs */
+.form-control {
+    background: #222;
+    border: 2px solid #00ffcc;
+    color: #fff;
+    transition: 0.3s;
+}
+.form-control:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
+    background: #111;
+}
+
+/* Estilo de los labels */
+label {
+    font-weight: bold;
+    color: #00ffcc;
+    text-shadow: 0 0 5px #00ffcc;
+}
+
+/* Botón con efecto neón */
+.btn-neon {
+    background-color: transparent;
+    border: 2px solid #00ffcc;
+    color: #00ffcc;
+    font-weight: bold;
+    transition: 0.3s;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00ffcc;
+}
+.btn-neon:hover {
+    background-color: #00ffcc;
+    color: #000;
+    box-shadow: 0 0 20px #00ffcc;
+}
+
+/* Título con resplandor */
+h2 {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+}

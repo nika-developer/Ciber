@@ -1,0 +1,347 @@
+<link rel="stylesheet" href="/css/admin-Dashboard.css" />
+
+<div class="welcome-container text-center">
+    <h1>Dashboard de Administradores</h1>
+    <button onclick="logout()" class="neon-logout">Cerrar sesión</button>
+</div>
+
+<!-- Sección de Juegos -->
+<button class="section-toggle-btn" onclick="toggleSection('juegos')">🎮 Juegos</button>
+<div class="section-content" id="juegos">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Descripcion</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each juegos}}
+                    <tr>
+                        <td>{{nombre}}</td>
+                        <td>{{genero}}</td>
+                        <td>{{descripcion}}</td>
+                        <td>
+                            <img
+                                src="{{imagen}}"
+                                alt="{{nombre}}"
+                                style="width: 80px; height: auto; object-fit: cover;"
+                            />
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn btn-edit"
+                                onclick="abrirModalEditar('{{_id}}', '{{nombre}}', '{{genero}}', '{{descripcion}}', '{{imagen}}')"
+                            >
+                                Editar
+                            </button>
+
+                            <form
+                                action="/admin/delete/game/{{_id}}"
+                                method="post"
+                            >
+                                <button
+                                    type="submit"
+                                    class="btn btn-delete"
+                                >Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <button class="btn btn-add" onclick="openModal('crearJuegoModal')">Agregar
+        Juego</button>
+</div>
+
+<div id="crearJuegoModal" class="modal hidden">
+    <div class="modal-content">
+        <span
+            class="close"
+            onclick="closeModal('crearJuegoModal')"
+        >&times;</span>
+        <h2>Crear Juego</h2>
+        <form action="/admin/games/create" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required />
+
+            <label for="genero">Género:</label>
+            <input type="text" id="genero" name="genero" required />
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+
+            <label for="imagen">Imagen (URL):</label>
+            <input type="text" id="imagen" name="imagen" required />
+
+            <button type="submit" class="btn btn-add">Guardar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Sección de Estaciones -->
+<button class="section-toggle-btn" onclick="toggleSection('estaciones')">🖥️
+    Estaciones</button>
+<div class="section-content" id="estaciones">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Categoría</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each estaciones}}
+                    <tr>
+                        <td>{{number}}</td>
+                        <td>{{category}}</td>
+                        <td>
+                            <button
+                                type="button"
+                                class="btn btn-edit"
+                                onclick="abrirModalEditarEstacion('{{_id}}', '{{number}}', '{{category}}')"
+                            >
+                                Editar
+                            </button>
+                            <form
+                                action="/admin/delete/station/{{_id}}"
+                                method="post"
+                            >
+                                <button
+                                    type="submit"
+                                    class="btn btn-delete"
+                                >Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <button
+        type="button"
+        class="btn btn-add"
+        onclick="openModal('crearEstacionModal')"
+    >Agregar Estación</button>
+</div>
+
+<div id="crearEstacionModal" class="modal hidden">
+    <div class="modal-content">
+        <span
+            class="close"
+            onclick="closeModal('crearEstacionModal')"
+        >&times;</span>
+        <h2>Crear Estación</h2>
+        <form action="/admin/station/create" method="post">
+            <label for="numero">Número de Estación:</label>
+            <input type="number" name="number" id="numero" required />
+
+            <label for="categoria">Categoría:</label>
+            <input type="text" name="category" id="categoria" required />
+
+            <button type="submit" class="btn btn-add">Guardar</button>
+        </form>
+    </div>
+</div>
+
+<div id="editarEstacionModal" class="modal hidden">
+    <div class="modal-content">
+        <span
+            class="close"
+            onclick="closeModal('editarEstacionModal')"
+        >&times;</span>
+        <h2>Editar Estación</h2>
+        <form id="form-editar-estacion" method="POST">
+            <label for="edit-numero">Número de Estación:</label>
+            <input type="number" name="number" id="edit-numero" required />
+
+            <label for="edit-categoria">Categoría:</label>
+            <input type="text" name="category" id="edit-categoria" required />
+
+            <button type="submit" class="btn btn-save">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+
+<!-- Sección de Usuarios -->
+<button class="section-toggle-btn" onclick="toggleSection('usuarios')">👤
+    Usuarios</button>
+<div class="section-content" id="usuarios">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each usuarios}}
+                    <tr>
+                        <td>{{username}}</td>
+                        <td>{{email}}</td>
+                        <td>{{rol}}</td>
+                        <td>
+                            <button
+                                type="button"
+                                class="btn btn-edit"
+                                onclick="abrirModalEditarUsuario('{{_id}}', '{{username}}', '{{email}}', '{{rol}}')"
+                            >
+                                Editar
+                            </button>
+
+                            <form
+                                action="/admin/delete/user/{{_id}}"
+                                method="post"
+                            >
+                                <button
+                                    type="submit"
+                                    class="btn btn-delete"
+                                >Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="editarUsuarioModal" class="modal hidden">
+    <div class="modal-content">
+        <span
+            class="close"
+            onclick="closeModal('editarUsuarioModal')"
+        >&times;</span>
+        <h2>Editar Usuario</h2>
+        <form id="form-editar-usuario" method="POST">
+            <label for="edit-username">Nombre:</label>
+            <input type="text" name="username" id="edit-username" required />
+
+            <label for="edit-email">Email:</label>
+            <input type="email" name="email" id="edit-email" required />
+
+            <label for="edit-rol">Rol:</label>
+            <select name="rol" id="edit-rol" required>
+                <option value="admin">Admin</option>
+                <option value="user">Usuario</option>
+            </select>
+
+            <button type="submit" class="btn btn-save">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+
+<!-- Sección de Reservas -->
+<button class="section-toggle-btn" onclick="toggleSection('reservas')">📅
+    Reservas</button>
+<div class="section-content" id="reservas">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Estación</th>
+                    <th>Juego</th>
+                    <th>Fecha y Hora</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each reservas}}
+                    <tr>
+                        <td>{{username}}</td>
+                        <td>{{category}}, {{number}}</td>
+                        <td>{{game}}</td>
+                        <td>{{fecha}}, {{hora}}</td>
+                        <td>
+                            <form
+                                action="/admin/delete/reserve/{{_id}}"
+                                method="post"
+                            >
+                                <button
+                                    type="submit"
+                                    class="btn btn-delete"
+                                >Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="editarJuegoModal" class="modal hidden">
+    <div class="modal-content">
+        <span
+            class="close"
+            onclick="closeModal('editarJuegoModal')"
+        >&times;</span>
+        <h2>Editar Juego</h2>
+        <form id="form-editar-juego" method="POST">
+            <label for="edit-nombre">Nombre:</label>
+            <input type="text" id="edit-nombre" name="nombre" required />
+
+            <label for="edit-genero">Género:</label>
+            <input type="text" id="edit-genero" name="genero" required />
+
+            <label for="edit-descripcion">Descripción:</label>
+            <textarea
+                id="edit-descripcion"
+                name="descripcion"
+                required
+            ></textarea>
+
+            <label for="edit-imagen">Imagen (URL):</label>
+            <input type="text" id="edit-imagen" name="imagen" required />
+
+            <button type="submit" class="btn btn-save">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function logout() { window.location.href = '/'; } function
+    toggleSection(id){ const section = document.getElementById(id);
+    section.style.display = section.style.display === 'none' ||
+    section.style.display === '' ? 'block' : 'none'; } function openModal(id) {
+    const modal = document.getElementById(id); modal.classList.remove('hidden');
+    } function closeModal(id) { const modal = document.getElementById(id);
+    modal.classList.add('hidden'); } function abrirModalEditar(id, nombre,
+    genero, descripcion, imagen) { const modal =
+    document.getElementById("editarJuegoModal"); const form =
+    document.getElementById("form-editar-juego"); // Cargar datos
+    document.getElementById("edit-nombre").value = nombre;
+    document.getElementById("edit-genero").value = genero;
+    document.getElementById("edit-descripcion").value = descripcion;
+    document.getElementById("edit-imagen").value = imagen; // Cambiar action del
+    form.action = `/admin/games/edit/${id}`; // Mostrar el modal
+    modal.classList.remove("hidden"); } function closeModal(id) {
+    document.getElementById(id).classList.add("hidden"); } function
+    abrirModalEditarEstacion(id, numero, categoria) { const modal =
+    document.getElementById("editarEstacionModal"); const form =
+    document.getElementById("form-editar-estacion");
+    document.getElementById("edit-numero").value = numero;
+    document.getElementById("edit-categoria").value = categoria; form.action =
+    `/admin/station/edit/${id}`; modal.classList.remove("hidden"); } function
+    abrirModalEditarUsuario(id, username, email, rol) { const modal =
+    document.getElementById("editarUsuarioModal"); const form =
+    document.getElementById("form-editar-usuario");
+    document.getElementById("edit-username").value = username;
+    document.getElementById("edit-email").value = email;
+    document.getElementById("edit-rol").value = rol; form.action =
+    `/admin/user/edit/${id}`; modal.classList.remove("hidden"); }
+
+</script>
