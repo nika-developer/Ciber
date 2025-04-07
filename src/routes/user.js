@@ -124,6 +124,17 @@ router.post("/edit/:id", async (req, res) => {
     }
 });
 
+//Eliminar Reserva Usuario
+router.post("/delete/:id", async (req, res) => {
+    try {
+        await Reserve.findByIdAndDelete(req.params.id);
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error al eliminar la reserva");
+    }
+});
+
 //Eliminar Juego
 router.post("/admin/delete/game/:id", async (req, res) => {
     try {
