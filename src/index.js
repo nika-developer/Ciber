@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require ('express');
 const mongoose = require ('mongoose');
 const userRoutes = require('./routes/user.js');
@@ -8,6 +7,7 @@ const { create } = require ('express-handlebars');
 const app = express();
 const port = process.env.PORT; 
 
+require('dotenv').config();
 //Middleware
 
 
