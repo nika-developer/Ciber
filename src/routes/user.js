@@ -335,7 +335,7 @@ router.get("/admin-dashboard", async (req, res) => {
             .lean();
         console.log(reservas);
 
-        res.render("admin-Dashboard", {
+        res.render("admin-dashboard", {
             juegos,
             estaciones,
             usuarios,
